@@ -33,5 +33,7 @@ export class ClientService {
     
   }
   
-  
+  newClient(client:Client) {
+	  this.clientCollection.add(client);
+  }
 }
