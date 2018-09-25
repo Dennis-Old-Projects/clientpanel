@@ -10,14 +10,14 @@ import {ClientDetailsComponent} from './components/client-details/client-details
 import {SettingsComponent} from './components/settings/settings.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
 
-import {environment} from '../environments/environment';
+//import {environment} from '../environments/environment';
 
-import {AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule} from 'angularfire2/firestore';
-import { AngularFireAuthModule} from 'angularfire2/auth';
+//import {AngularFireModule } from 'angularfire2';
+//import { AngularFirestoreModule} from 'angularfire2/firestore';
+//import { AngularFireAuthModule} from 'angularfire2/auth';
 
-import { ClientService} from './services/client.service';
-import {AuthService} from './services/auth.service';
+//import { ClientService} from './services/client.service';
+//import {AuthService} from './services/auth.service';
 
 const routes: Routes =[
   {path: '', component: DashboardComponent},
@@ -32,12 +32,9 @@ const routes: Routes =[
 @NgModule({
   exports: [RouterModule],
   imports: [
-    RouterModule.forRoot(routes),
-    AngularFireModule.initializeApp(environment.firebase,'clientpanelprod'),
-    AngularFirestoreModule,
-    AngularFireAuthModule
+    RouterModule.forRoot(routes)
   ],
-  providers: [ClientService,AuthService],
+  providers: [],
   declarations: []
 })
 export class AppRoutingModule { }

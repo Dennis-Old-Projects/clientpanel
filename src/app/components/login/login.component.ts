@@ -21,9 +21,14 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-	  if (this.authService.getAuth()) {
-		  this.router.navigate(['/']); 
-	  }
+	  //if (this.authService.getAuth()) {
+		//  this.router.navigate(['/']); 
+	  //}
+	  this.authService.getAuth().subscribe(auth => {
+		  if (auth) {
+			  this.router.navigate(['/']);   
+		  }
+	  });
   }
 
   onSubmit() {

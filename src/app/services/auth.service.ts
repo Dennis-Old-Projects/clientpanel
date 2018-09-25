@@ -18,11 +18,17 @@ export class AuthService {
 		  	.then(userData => {
 		  		resolve(userData);
 		  		this.authState = userData;
+		  		console.log(this.authState);
 		  	  },err => reject(err));
 	  });
   }
   
   getAuth() {
-	  return this.authState;
+	  console.log(this.authState);
+	  return this.afAuth.authState;
+  }
+  
+  logout() {
+	  this.afAuth.auth.signOut();
   }
 }
