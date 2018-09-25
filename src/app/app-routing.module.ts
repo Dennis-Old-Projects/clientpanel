@@ -17,6 +17,7 @@ import { AngularFirestoreModule} from 'angularfire2/firestore';
 import { AngularFireAuthModule} from 'angularfire2/auth';
 
 import { ClientService} from './services/client.service';
+import {AuthService} from './services/auth.service';
 
 const routes: Routes =[
   {path: '', component: DashboardComponent},
@@ -36,7 +37,7 @@ const routes: Routes =[
     AngularFirestoreModule,
     AngularFireAuthModule
   ],
-  providers: [ClientService],
+  providers: [ClientService,AuthService],
   declarations: []
 })
 export class AppRoutingModule { }
