@@ -31,4 +31,16 @@ export class AuthService {
   logout() {
 	  this.afAuth.auth.signOut();
   }
+  
+  register(email:string, password:string) {
+	  console.log(email);
+	  return new Promise((resolve, reject) => {
+		  this.afAuth.auth.createUserWithEmailAndPassword(email,password)
+		  	.then(userData => {
+		  		resolve(userData);
+		  		this.authState = userData;
+		  		console.log(this.authState);
+		  	  },err => reject(err));
+	  });
+  }
 }
