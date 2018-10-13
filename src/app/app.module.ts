@@ -23,6 +23,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 
 import { ClientService} from './services/client.service';
 import {AuthService} from './services/auth.service';
+import {SettingsService} from './services/settings.service';
 
 import {environment} from '../environments/environment';
 
@@ -50,7 +51,7 @@ import {environment} from '../environments/environment';
     AngularFireAuthModule,
     FormsModule
   ],
-  providers: [ClientService,AuthService],
+  providers: [ClientService,AuthService,SettingsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
