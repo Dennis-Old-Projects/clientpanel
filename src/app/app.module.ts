@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/Forms';
+import { FormsModule } from '@angular/forms';
 
-import {AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule} from 'angularfire2/firestore';
-import { AngularFireAuthModule} from 'angularfire2/auth';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -21,11 +21,11 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 
-import { ClientService} from './services/client.service';
-import {AuthService} from './services/auth.service';
-import {SettingsService} from './services/settings.service';
+import { ClientService } from './services/client.service';
+import { AuthService } from './services/auth.service';
+import { SettingsService } from './services/settings.service';
 
-import {environment} from '../environments/environment';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -46,12 +46,12 @@ import {environment} from '../environments/environment';
     BrowserModule,
     AppRoutingModule,
     FlashMessagesModule.forRoot(),
-    AngularFireModule.initializeApp(environment.firebase,'clientpanelprod'),
+    AngularFireModule.initializeApp(environment.firebase, 'clientpanelprod'),
     AngularFirestoreModule,
     AngularFireAuthModule,
     FormsModule
   ],
-  providers: [ClientService,AuthService,SettingsService],
+  providers: [ClientService, AuthService, SettingsService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
