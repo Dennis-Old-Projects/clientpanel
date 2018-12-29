@@ -4,6 +4,9 @@ node_js:
 dist: xenial
 sudo: false
 
+services:
+  - docker
+
 cache:
   directories:
     - node_modules
@@ -14,5 +17,7 @@ addons:
 script:
   #  - npm run lint
   # - npm run test:headless
-  - npm run build
-  - xvfb-run npm run e2e
+  #- npm run build
+  #- xvfb-run npm run e2e
+  - make run
+  - make stop && make clean
