@@ -19,5 +19,4 @@ script:
   # - npm run test:headless
   #- npm run build
   #- xvfb-run npm run e2e
-  - make run
-  - make stop && make clean
+  - docker build -t clientpanel:1_0-SNAPSHOT .
