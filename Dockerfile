@@ -3,6 +3,9 @@
 # We label our stage as 'builder'
 FROM node:10-alpine as builder
 
+ARG version 
+ARG build-number
+
 COPY package.json package-lock.json ./
 
 RUN npm set progress=false && npm config set depth 0 && npm cache clean --force
