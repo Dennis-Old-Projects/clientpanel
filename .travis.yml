@@ -6,13 +6,6 @@ sudo: false
 services:
   - docker
 
-cache:
-  directories:
-    - node_modules
-
-addons:
-  chrome: stable
-
 script:
   #  - npm run lint
   # - npm run test:headless
