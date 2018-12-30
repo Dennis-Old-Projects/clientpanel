@@ -33,3 +33,5 @@ COPY --from=builder /ng-app/dist/clientpanel /usr/share/nginx/html
 RUN ls -l /usr/share/nginx/html/
 
 CMD ["nginx", "-g", "daemon off;"]
+
+RUN echo "Oh dang look at that $version $build-number"
