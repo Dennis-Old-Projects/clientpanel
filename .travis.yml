@@ -11,4 +11,4 @@ script:
   # - npm run test:headless
   #- npm run build
   #- xvfb-run npm run e2e
-  - docker build -t clientpanel:$TRAVIS_BRANCH-SNAPSHOT-$TRAVIS_BUILD_NUMBER .
+  - docker build -t clientpanel:latest -t clientpanel:$TRAVIS_BRANCH-SNAPSHOT-$TRAVIS_BUILD_NUMBER .
