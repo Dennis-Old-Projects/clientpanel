@@ -1,14 +1,14 @@
 language: generic
-
 dist: xenial
 sudo: false
-
 services:
   - docker
-
 script:
-  #  - npm run lint
-  # - npm run test:headless
-  #- npm run build
-  #- xvfb-run npm run e2e
-  - docker build -t clientpanel:latest -t clientpanel:$TRAVIS_BRANCH-SNAPSHOT-$TRAVIS_BUILD_NUMBER .
+  - docker build -t clientpanel:latest -t clientpanel:$TRAVIS_BRANCH-SNAPSHOT-$TRAVIS_BUILD_NUMBER
+  - docker login -u "TREESCALE_USER" -p "TREESCALE_PASS" repo.treescale.com
+  - docker logout repo.treescale.com
+    .
+env:
+  global:
+    - secure: OFvnQbg2SteZILk0B01EIU4QuxUUFAFQ4uckOXvW5eo+EFv/ZapD28qHWzR4Ajv8JUQNnhZsUU5c4JKcrz38hDLpitfQKe2mB6twfXIy2jybQpmCX4/9ShGDHEduoc9DFGjtgACFnWhGHtiJtZ/Pk7EaUllz0U/Vw8EmilIGRlQk9p9+hA7I1yjKqF7trb3iNFEBhcaC5Ih6A4+/rCHoDvyLJCOdNCIlyTCp5iBi5WmTs5B6NK782GY8u/YLD3EU0I3VPSoCd4YSzWUUlQi4AAenCpSa/DgZ6wj2t+fIqbB1AEnX0pSghIMdA1nTpjGJh7JKKhcWLrco6HhoTebjoemPFjQIdyIof4xz5JotxbdmmN4kvgulXwgFfwchYNldCdBleUZqJxX+Xi0J2ZpHFWwolFF9tspS5uaUrm62qNQZVlpoLULhzfovKLw4fxd6zoaAtOy/AAa+/1Qh5AXjLV/Yglgz9Cg5QZFC1CGsXPQQqM8sWmZFTdqSbWxWCLjrlQJbhrXHC/CEl5mGpldlssAqlEOvFkaz/GrKKPQ9BHzJYbh92NA50V2evRgeg9eABqOx2fadR3f7p6GO8iVtgiNFfzrWaWDYNh7EytSS+6/imClLDNkxdWUmYWfvjS/FdiTRDmJ6IneNleKHzI8zRouHboT4IbVHVCJ+DNvM0wQ=
+    - secure: cF0pF3GJLA4pSlDLJCZZgpcGSUTWMbELeyDFG5VqjK2gn1fKNFH31lhEQUeck5WPg2UOmGNgSROG/bnarrR7HLhFr4QfSc5Zhm5CfNm3HlYXmk/kK2Gsa2W0nQ4j2WkAdXYho3Kcu+Jql/kwdIYNbK4OjWL9JKyBFqD8xq5Zpx0H7YRGLqj7umJKPK1+kTJBFk9FP2/WabvJGgD3fSuSC9zXmHY8Yjn/3XEPy/AT6iRZ4MDw0dHiq2nh4iod5Q+5tjwXFYApQAvod4mVgVT+2kT6SbFdSnfKZlwzt7chb+C2FPwmxossM6WwlKjALQ9RKrWimesymEL2Lgy/qsGfUCHFe5FRCilOtJ0hJOfb8YzrJ58/kgNR1mAOPfadl0OU+CkEJnitGGcXW4Nxv2HLTVUAq3RcidXOxcqlBIQmoQRFsf5MWSXqOA0an/AFUL/8xj123zpVs5fVBHTq3makpiMsjh1Rd31BfrMOIsWIe6P8oAgUQMjqE9shD+7CAEOKtEybJm4BMKkpEcZDMW8TZqKJowYC/pMDli53sgosoe4L+BtTZfpJzNtF8QpOyLXA/ovjt9pGkWA1Yy5R/URxkSfTzti0iDa3UdWl3TsWfXC71EDTuDm29pPf6mG+4WL9auivwd8NQ3DHG1zuZqirw/UdNSCo034g7K0QuCQOd7U=
