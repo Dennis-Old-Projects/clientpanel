@@ -4,7 +4,6 @@ sudo: false
 services:
   - docker
 script:
-  - docker build -t clientpanel:latest -t clientpanel:$TRAVIS_BRANCH-SNAPSHOT-$TRAVIS_BUILD_NUMBER .
-  - echo "$TREESCALE_USER"
-  - echo $TREESCALE_USER
-  - echo "$TREESCALE_PASS" | docker login -u "$TREESCALE_USER" --password-stdin repo.treescale.com
+  #- docker build -t clientpanel:latest -t clientpanel:$TRAVIS_BRANCH-SNAPSHOT-$TRAVIS_BUILD_NUMBER .
+  #- echo "$TREESCALE_PASS" | docker login -u "$TREESCALE_USER" --password-stdin repo.treescale.com
+  - docker login -u $TREESCALE_USER -p $TREESCALE_PASS repo.treescale.com
