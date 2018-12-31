@@ -5,7 +5,7 @@ services:
   - docker
 script:
   - docker build -t clientpanel:latest -t clientpanel:$TRAVIS_BRANCH-SNAPSHOT-$TRAVIS_BUILD_NUMBER .
-  - docker login -u "$TREESCALE_USER" -p "$TREESCALE_PASS" repo.treescale.com
+  - echo "$TREESCALE_PASS" | docker login -u "$TREESCALE_USER" --password-stdin
   - docker logout repo.treescale.com
     .
 env:
