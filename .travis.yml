@@ -9,7 +9,7 @@ script:
   - echo $TREESCALE_USER
   #- echo "$TREESCALE_PASS" | docker login --username "$TREESCALE_USER" --password-stdin
   #- docker logout repo.treescale.com
-    .
+
 env:
   global:
     - secure: OFvnQbg2SteZILk0B01EIU4QuxUUFAFQ4uckOXvW5eo+EFv/ZapD28qHWzR4Ajv8JUQNnhZsUU5c4JKcrz38hDLpitfQKe2mB6twfXIy2jybQpmCX4/9ShGDHEduoc9DFGjtgACFnWhGHtiJtZ/Pk7EaUllz0U/Vw8EmilIGRlQk9p9+hA7I1yjKqF7trb3iNFEBhcaC5Ih6A4+/rCHoDvyLJCOdNCIlyTCp5iBi5WmTs5B6NK782GY8u/YLD3EU0I3VPSoCd4YSzWUUlQi4AAenCpSa/DgZ6wj2t+fIqbB1AEnX0pSghIMdA1nTpjGJh7JKKhcWLrco6HhoTebjoemPFjQIdyIof4xz5JotxbdmmN4kvgulXwgFfwchYNldCdBleUZqJxX+Xi0J2ZpHFWwolFF9tspS5uaUrm62qNQZVlpoLULhzfovKLw4fxd6zoaAtOy/AAa+/1Qh5AXjLV/Yglgz9Cg5QZFC1CGsXPQQqM8sWmZFTdqSbWxWCLjrlQJbhrXHC/CEl5mGpldlssAqlEOvFkaz/GrKKPQ9BHzJYbh92NA50V2evRgeg9eABqOx2fadR3f7p6GO8iVtgiNFfzrWaWDYNh7EytSS+6/imClLDNkxdWUmYWfvjS/FdiTRDmJ6IneNleKHzI8zRouHboT4IbVHVCJ+DNvM0wQ=
