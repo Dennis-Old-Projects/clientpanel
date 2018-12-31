@@ -7,7 +7,7 @@ script:
   - docker build -t clientpanel:latest -t clientpanel:$TRAVIS_BRANCH-SNAPSHOT-$TRAVIS_BUILD_NUMBER .
   - echo "$TREESCALE_USER"
   - echo $TREESCALE_USER
-  - echo "$TREESCALE_PASS" | docker login -u "$TREESCALE_USER" --password-stdin registry.example.com
+  - echo "$TREESCALE_PASS" | docker login -u "$TREESCALE_USER" --password-stdin repo.treescale.com
 env:
   global:
     - secure: H10NpapN3yXwbpe2E4DzLavYHzYAUKyWcsZTD+Eke+pEiG9/YoeUs5K7EwTBhJI89ZVLMeAoNIfZowX2GnQXVyTEe288VRBWh0sCCW/LFUzWxzjEtjFeWGS0F8jdBIHzvyZINzdVop5yHz6lI1PEaFZeRQjc0DvHxHak+DaUKgauxQol7rlB5v5S+ZA3onZnWkpaY6P9mQ0zWoTg7qgA3iRM4m12bQuwkw1fVSj6S+nHC2v+lurPpjW9VEug9+GpTTc2z+njs1p93nPZYHyQZqtZdWhl18UAAgcDQz0x7jTLLs/nejPXH4ZS+9MmhWgSzfExDDHap2C5dollUQmR01nnUlvNTh3M7NsdSf/NMi3LcoT9IFyy4BLPIJvYM6qMrgEcFVei60YGqNHgkvv+4R6LiWy5t6BfHn5gvsGKW/EtMrZOadHEBm2I9xRIanO2Fy/xNbmTr5XBUhBIy23LQ+0kkgd4HrqxGgRjV5oKeerXqF2oFS6E+XY8M5ekw4L8Wr0VGPn16dxxFk7EaCgVoX9hk8NEvN+SCaiZ7R85zMPov0flaRAz+uVqRu18l1PpiRyvpN+65OSs1jHZ6CyxKe+fLsIBKGz+HZ3GWwGGw029OfbFDUiFPrdlbCX6FeNbs5NBEMgEIPltU0BSE9dVkpomE8Ym+T9f8tp3t0sOPGA=
