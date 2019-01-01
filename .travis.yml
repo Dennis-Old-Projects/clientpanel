@@ -12,7 +12,7 @@ env:
 script:
   #- docker build -t clientpanel:latest -t clientpanel:$TRAVIS_BRANCH-SNAPSHOT-$TRAVIS_BUILD_NUMBER .
   #- echo "$TREESCALE_PASS" | docker login -u "$TREESCALE_USER" --password-stdin repo.treescale.com
-  - docker login -u $TREESCALE_USER -p $TREESCALE_PASS $DOCKER_HOST
+  - docker login -u $TREESCALE_USER -p $TREESCALE_PASS repo.treescale.com
   #- echo $TREESCALE_PASS | docker login --username $TREESCALE_USER --password-stdin repo.treescale.com
   - docker build -t clientpanel:latest -t $DOCKER_HOST/dchacko/clientpanel:$TRAVIS_BRANCH-SNAPSHOT-$TRAVIS_BUILD_NUMBER .
   - docker push $DOCKER_HOST/dchacko/clientpanel:$TRAVIS_BRANCH-SNAPSHOT-$TRAVIS_BUILD_NUMBER
