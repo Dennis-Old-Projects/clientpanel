@@ -11,6 +11,6 @@ env:
 
 script:
   - docker login -u $TREESCALE_USER -p $TREESCALE_PASS $DOCKER_HOST_REGISTRY
-  - docker build -t clientpanel:latest -t repo.treescale.com/dchacko/clientpanel:$TRAVIS_BRANCH-SNAPSHOT-$TRAVIS_BUILD_NUMBER .
-  - docker push repo.treescale.com/dchacko/clientpanel:$TRAVIS_BRANCH-SNAPSHOT-$TRAVIS_BUILD_NUMBER
+  - docker build -t clientpanel:latest -t $DOCKER_HOST_REGISTRY/dchacko/clientpanel:$TRAVIS_BRANCH-SNAPSHOT-$TRAVIS_BUILD_NUMBER .
+  - docker push $DOCKER_HOST_REGISTRY/dchacko/clientpanel:$TRAVIS_BRANCH-SNAPSHOT-$TRAVIS_BUILD_NUMBER
   - docker logout $DOCKER_HOST_REGISTRY
