@@ -5,12 +5,12 @@ services:
   - docker
 env:
   global:
-    DOCKER_HOST: repo.treescale.com
+    DOCKER_HOST_REGISTRY: repo.treescale.com
     #- secure: YiNBElhi3kJR2OEQmsNfFf7ecBMhdmuCMS+w7qXb6eZ+YRKCfyhSEjPXkcPqhoo+D7xHJA5BLvTFy79uxBhhb/ZXdysxU38p8dTOtHWBjfJ9/Ku/77qefDVG0fHmPgXk+PCb9XXorrU4VC+VB+jT0EGI4xvv7Pe/ux7I+eC6EIbiWNcULQtepHUDq4oS1bJnr02K1c9rhNqPTujWfw43Q7X0PnDgRXAoYw6zkSV0RL8JVHu/kul5DVsKIQTN4jFRJv0YqesN6QpJJRp867rIL9d42hVXPW49mZWzHnWTePdikaJdZFlyFLXNze746tVJhoywYxUslLWBinPSX7dOxtlfJXXhQvAdWFdeiTtKubfz+04ZIuioKiiVCZD6UV1r1Gxx9H6gy9dTygpDmC4NEF+fRx4+JgMQ+VzFdksVIkULjzg8KVItt1s8IiOoQFS57+CB/qWdcaej253LCuPLKS9T68fIE1EW37ECToA9+udnxJ1WxRW3/LtcCFgbv3F6PpBeQU3Fc1+G3hnYZ9cniteEhKZHN4ELBirt75WU+GkiEWs4X3DVgxS4f18ARVpX8PemeXV7md4J+ney2o3L2wPMTE4X60lRpq9lfdNK/f/Z7ac36EunB9tdHoEFXdYXz+Z8FQKdI+82wGZTA1cCGd0bEGpWcNWpLjgXTSDu0tY=
     #- secure: tFmVM5X0GhPNu0oVc3EkLqqdY+WRSaOkg3lOdEiuBRsgaUpt6mwxkVXZaYos4PVzfyZQAbvyF0UzmBsdloLQcsk5GazCt7EfmCx/h7kc1IAJm36WgLBIzuWiG4d059+V+O9eCfrsfNu9s87fzNaxkQjtDssBbLBLTq8vHzZl/kFW8FMNB7UWUEfZwzsfl6YwgihmDA66Mp2rVgBjO0T3OVIbmW8QM7mDe5dgjFg9Vl2MjSQTb8IcyomdGCvN4hvpyK19Ga7f4qcTJfIpuHPhKOk+OBcM3VtNL8DO4FSljRFelz4VM5gRSyYEW40L8UoFyezpsMzxL6eLBF4C96KwlOwpCltbjBqUl3U9pHm+IXn/W2Te7m4pqguFToaAZR3q/2NRtMLwYgo5no5fD5llHawNDbfIbusaNtOR297g08VYjAo8r8b1+7SRX1idPPG46K9B3rNi+SHVZv/cL2GmDgoI6quZ1Kyb+cEdPvwo1+G9RIPcIV1NErhdY2aT2rhJ5uTLrBZfS/IuCamYRL/Cn+KI/pSed945tvQfeK2SUsamo6CRRcx53EH33k0M2TAv+ciJDo+4mvegJyhz2+g50l7FoJ4E+h7RPtuhHAt8pMAxrF0Ocm+rgBk43GA5u/rgkmEo9O/+e+xai2YScyvY0IgqpRf4gP9VgFT2sdThJGc=
 
 script:
-  - docker login -u $TREESCALE_USER -p $TREESCALE_PASS $DOCKER_HOST
+  - docker login -u $TREESCALE_USER -p $TREESCALE_PASS $DOCKER_HOST_REGISTRY
   - docker build -t clientpanel:latest -t repo.treescale.com/dchacko/clientpanel:$TRAVIS_BRANCH-SNAPSHOT-$TRAVIS_BUILD_NUMBER .
   - docker push repo.treescale.com/dchacko/clientpanel:$TRAVIS_BRANCH-SNAPSHOT-$TRAVIS_BUILD_NUMBER
-  - docker logout $DOCKER_HOST
+  - docker logout $DOCKER_HOST_REGISTRY
