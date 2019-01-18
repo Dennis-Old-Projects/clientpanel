@@ -16,7 +16,7 @@ echo "Created VPC with id" $vpcId
 echo "Naming the VPC"
 aws ec2 create-tags \
  --resources $vpcId \
- --tags Key=Name,Value=$name
+ --tags Key=Name,Value="$name"
 
 #Tool to calculated VPC and subnets CIDR
 #http://www.davidc.net/sites/default/subnets/subnets.html?network=172.16.0.0&mask=18&division=7.31
