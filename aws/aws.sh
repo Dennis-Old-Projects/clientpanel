@@ -32,14 +32,24 @@ awsresponse=$(aws ec2 modify-vpc-attribute \
  --vpc-id $vpcId \
  --enable-dns-support "{ \"Value\": true}")
  echo $awsresponse
-
 #Add DNS HostNames
 echo "Enabling DNS Hostnames"
 awsresponse=$(aws ec2 modify-vpc-attribute \
  --vpc-id $vpcId \
  --enable-dns-hostnames "{ \"Value\": true}")
-
  echo $awsresponse
 
-
+#Create Internet Gateway
+echo "Creating Internet Gateway"
+internetGatewayResponse=$(aws ec2 create-internet-gateway --output json)
+internetGatewayId=$(echo -e $internetGatewayResponse | jq '.InternetGateway.InternetGatewayId' | tr -d '"')
+#Name the Internet Gateway
+echo "Naming the Internet Gateway"
+aws ec2 create-tags \
+ --resources $internetGatewayId \
+ --tags Key=Name,Value="$gatewayName"
+#Attach gateway to VPC
+echo "Attach gateway to VPC"
+awsresponse=$(aws ec2 attach-internet-gateway --internet-gateway-id =$internetGatewayId --vpc-id $vpcId)
+echo $awsresponse
 
