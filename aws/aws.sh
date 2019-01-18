@@ -68,9 +68,19 @@ awsresponse=$(aws ec2 modify-subnet-attribute --subnet-id $subnetId --map-public
 
 #Create security group for vpc
 echo "Create security group for vpc"
-securityGroupResponse=$(aws ec2 create-security-group --group-name $securityGroupName \
-  --description "Private: $securityGroupName" \
+securityGroupResponse=$(aws ec2 create-security-group --group-name test \
+  --description "Private: test" \
   --vpc-id $vpcId --output json)
-echo -e $securityGroupResponse
+securityGroupId=$(echo -e $securityGroupResponse | jq '.GroupId' | tr -d '"')
+echo "Created Security Group " $securityGroupId
+#Name the security group
+awsresponse=$(aws ec2 create-tags --resources $securityGroupId --tags Key=Name,Value="$securityGroupName")
+echo $awsresponse
+#enable port 22
+awsresponse=$(aws ec2 authorize-security-group-ingress \
+  --group-id $securityGroupId \
+  --protocol tcp --port 22 \
+  --cidr $port22CidrBlock )
+echo $awsresponse
 
 
