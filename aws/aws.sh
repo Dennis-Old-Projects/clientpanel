@@ -69,7 +69,7 @@ awsresponse=$(aws ec2 modify-subnet-attribute --subnet-id $subnetId --map-public
 #Create security group for vpc
 echo "Create security group for vpc"
 securityGroupResponse=$(aws ec2 create-security-group --group-name $securityGroupName \
-  --description "Private: $securityGroupName") \
+  --description "Private: $securityGroupName" \
   --vpc-id $vpcId --output json)
 echo -e $securityGroupResponse
 
