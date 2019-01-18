@@ -30,79 +30,16 @@ aws ec2 create-tags \
 echo "Enabling DNS support"
 awsresponse = $(aws ec2 modify-vpc-attribute \
  --vpc-id $vpcId \
- -- enable-dns-support "{ \"Value\": true}")
+ --enable-dns-support "{ \"Value\": true}")
  echo $awsresponse
 
 #Add DNS HostNames
 echo "Enabling DNS Hostnames"
 awsresponse = $(aws ec2 modify-vpc-attribute \
  --vpc-id $vpcId \
- -- enable-dns-hostnames "{ \"Value\": true}")
+ --enable-dns-hostnames "{ \"Value\": true}")
 
  echo $awsresponse
 
-#Create Internet Gateway
-echo "Creating Internet Gateway"
-internetGatewayResponse = $(aws ec2 create-internet-gateway --output json)
-internetGatewayId = $(echo -e $internetGatewayResponse | jq '.InternetGateway.InternetGatewayId' | tr -d '"')
-#Name the Internet Gateway
-echo "Naming the Internet Gateway"
-aws ec2 create-tags \
- --resources $internetGatewayId \
- --tags Key=Name,Value="$gatewayName"
-#Attach gateway to VPC
-echo "Attach gateway to VPC"
-awsresponse = $(aws ec2 attach-internet-gateway --internet-gateway-id =$internetGatewayId --vpc-id $vpcId)
-echo $awsresponse
 
-#Create a subnet for the the VPC
-echo "Create a subnet for the the VPC"
-subnetResponse=$(aws ec2 create-subnet --cidr-block $subNetCidrBlock --vpc-id $vpcId --output json)
-subnetId = $(echo -e $subnetResponse | jq '.Subnet.SubnetId' | tr -d '"' )
-echo "Created Subnet " $subnetId
-#Name the subnet
-echo "Naming the subnet"
-awsresponse = $(aws ec2 create-tags --resources $subnetId --tags Key=Name,Value="$subnetName" )
-echo $awsresponse
-
-#Enable public ip on subnet
-echo "Enable public ip on subnet"
-awsresponse = $(aws ec2 modify-subnet-attribute --subnet-id $subnetId --map-public-ip-on-launch)
-#Create security group for vpc
-echo "Create security group for vpc"
-securityGroupResponse = $(aws ec2 create-security-group --group-name $securityGroupName \
-  --description "Private: $securityGroupName") \
-  --vpc-id $vpcId --output json)
-securityGroupId = $(echo -e $securityGroupResponse | jq '.GroupId' | tr -d '"')
-echo "Created Security Group " $securityGroupId
-#Name the security group
-awsresponse = $(aws ec2 create-tags --resources $securityGroupId --tags Key=Name,Value="$securityGroupName")
-echo $awsresponse
-#enable port 22
-awsresponse= $(aws ec2 authorize-security-group-ingress \
-  --group-id $securityGroupId \
-  --protocol tcp --port 22 \
-  --cidr $port22CidrBlock )
-echo $awsresponse
-
-
-#Create Route table for vpc
-echo "Create Route table for vpc"
-routeTableResponse = $(aws ec2 create-route-table --vpc-id $vpcId --output json)
-routeTableId = $(echo -e $routeTableResponse | jq '.RouteTable.RouteTableId' | tr -d '"')
-echo "Created Route table " $routeTableId
-#Name the route table
-awsresponse = $(aws ec2 create-tags --resources $routeTableId \
-  --tags Key=Name,Value="$routeTableName")
-#Add route for Internet Gateway
-echo "Add route for Internet Gateway"
-awsresponse = $(aws ec2 create-route \
- --route-table-id $routeTableId
- --destination-cidr-block $destinationCidrBlock \
- --gateway-id $internetGatewayId)
-#Add route to subnet
-echo "Add route to subnet"
-awsresponse = $(aws ec2 associate-route-table \
- --subnet-id $subnetId \
- --route-table-id $routeTableId)
 
