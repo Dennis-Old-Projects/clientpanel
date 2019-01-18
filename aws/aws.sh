@@ -83,4 +83,23 @@ awsresponse=$(aws ec2 authorize-security-group-ingress \
   --cidr $port22CidrBlock )
 echo $awsresponse
 
-
+#Create Route table for vpc
+echo "Create Route table for vpc"
+routeTableResponse=$(aws ec2 create-route-table --vpc-id $vpcId --output json)
+routeTableId=$(echo -e $routeTableResponse | jq '.RouteTable.RouteTableId' | tr -d '"')
+echo "Created Route table " $routeTableId
+#Name the route table
+awsresponse=$(aws ec2 create-tags --resources $routeTableId \
+  --tags Key=Name,Value="$routeTableName")
+#Add route for Internet Gateway
+echo "Add route for Internet Gateway"
+awsresponse=$(aws ec2 create-route \
+ --route-table-id $routeTableId
+ --destination-cidr-block $destinationCidrBlock \
+ --gateway-id $internetGatewayId)
+#Add route to subnet
+echo "Add route to subnet"
+awsresponse=$(aws ec2 associate-route-table \
+ --subnet-id $subnetId \
+ --route-table-id $routeTableId)
+ 
