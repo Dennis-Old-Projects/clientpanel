@@ -28,14 +28,14 @@ aws ec2 create-tags \
 
 #Add DNS support
 echo "Enabling DNS support"
-awsresponse = $(aws ec2 modify-vpc-attribute \
+awsresponse=$(aws ec2 modify-vpc-attribute \
  --vpc-id $vpcId \
  --enable-dns-support "{ \"Value\": true}")
  echo $awsresponse
 
 #Add DNS HostNames
 echo "Enabling DNS Hostnames"
-awsresponse = $(aws ec2 modify-vpc-attribute \
+awsresponse=$(aws ec2 modify-vpc-attribute \
  --vpc-id $vpcId \
  --enable-dns-hostnames "{ \"Value\": true}")
 
