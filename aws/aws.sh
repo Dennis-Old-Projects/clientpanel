@@ -50,6 +50,19 @@ aws ec2 create-tags \
  --tags Key=Name,Value="$gatewayName"
 #Attach gateway to VPC
 echo "Attach gateway to VPC"
-awsresponse=$(aws ec2 attach-internet-gateway --internet-gateway-id =$internetGatewayId --vpc-id $vpcId)
+awsresponse=$(aws ec2 attach-internet-gateway --internet-gateway-id $internetGatewayId --vpc-id $vpcId)
 echo $awsresponse
+
+#Create a subnet for the the VPC
+echo "Create a subnet for the the VPC"
+subnetResponse=$(aws ec2 create-subnet --cidr-block $subNetCidrBlock --vpc-id $vpcId --output json)
+subnetId=$(echo -e $subnetResponse | jq '.Subnet.SubnetId' | tr -d '"' )
+echo "Created Subnet " $subnetId
+#Name the subnet
+echo "Naming the subnet"
+awsresponse=$(aws ec2 create-tags --resources $subnetId --tags Key=Name,Value="$subnetName" )
+echo $awsresponse
+#Enable public ip on subnet
+echo "Enable public ip on subnet"
+awsresponse=$(aws ec2 modify-subnet-attribute --subnet-id $subnetId --map-public-ip-on-launch)
 
