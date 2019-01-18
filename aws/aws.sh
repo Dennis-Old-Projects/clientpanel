@@ -94,7 +94,7 @@ awsresponse=$(aws ec2 create-tags --resources $routeTableId \
 #Add route for Internet Gateway
 echo "Add route for Internet Gateway"
 awsresponse=$(aws ec2 create-route \
- --route-table-id $routeTableId
+ --route-table-id $routeTableId \
  --destinationCidrBlock $destinationCidrBlock \
  --gateway-id $internetGatewayId)
 #Add route to subnet
